@@ -1,0 +1,4 @@
+0000000000000000000000000000000000000000 0a4071d55806e13a77ad587820c0358e010b7277 Jaime Guimaraes <j.souza9410@gmail.com> 1747696935 -0300	branch: Created from origin/clean
+0a4071d55806e13a77ad587820c0358e010b7277 43bfb80e459d8db00b0237a5720269a423e0847a Jaime Guimaraes <j.souza9410@gmail.com> 1747701240 -0300	commit: fix: versao java
+43bfb80e459d8db00b0237a5720269a423e0847a aef4e239ed7a4919d6e271890bec651a0fe3add5 Jaime Guimaraes <j.souza9410@gmail.com> 1747701254 -0300	commit: feat: adicionando testes
+aef4e239ed7a4919d6e271890bec651a0fe3add5 209c0150923ff0a264079f2a2a3a605ca4bfc142 Jaime Guimaraes <j.souza9410@gmail.com> 1747701271 -0300	commit: feat: adicionando logica do chamado
