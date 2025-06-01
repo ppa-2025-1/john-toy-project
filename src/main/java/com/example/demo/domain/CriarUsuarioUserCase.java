@@ -9,6 +9,8 @@ import com.example.demo.domain.dto.NewUser;
 import com.example.demo.domain.out.IPasswordEncoder;
 import com.example.demo.domain.out.IRoleRepository;
 import com.example.demo.domain.out.IUserRepository;
+import com.example.demo.repository.ChamadoRepository;
+import com.example.demo.repository.entity.Chamado;
 import com.example.demo.repository.entity.Profile;
 import com.example.demo.repository.entity.Role;
 import com.example.demo.repository.entity.User;
@@ -23,6 +25,7 @@ public class CriarUsuarioUserCase {
     private IUserRepository userRepository;
     private IRoleRepository roleRepository;
     private IPasswordEncoder passwordEncoder;
+    private final ChamadoRepository chamadoRepository;
     // ------------------------------------------
 
     private Set<String> defaultRoles;
@@ -31,12 +34,14 @@ public class CriarUsuarioUserCase {
             IUserRepository userRepository, 
             IRoleRepository roleRepository,
             IPasswordEncoder passwordEncoder,
-            @Value("${app.user.default.roles}") Set<String> defaultRoles) {
-
-        this.userRepository = userRepository;
-        this.roleRepository = roleRepository;   
-        this.passwordEncoder = passwordEncoder;
-        this.defaultRoles = defaultRoles;
+            @Value("${app.user.default.roles}") Set<String> defaultRoles,
+            ChamadoRepository chamadoRepository) {
+                
+                this.userRepository = userRepository;
+                this.roleRepository = roleRepository;   
+                this.passwordEncoder = passwordEncoder;
+                this.defaultRoles = defaultRoles;
+                this.chamadoRepository = chamadoRepository;
     }
 
     // contém toda a lógica de criação de usuário
@@ -100,6 +105,17 @@ public class CriarUsuarioUserCase {
         user.setProfile(profile);
 
         userRepository.save(user); 
+
+        User savedUser = userRepository.save(user);
+
+        Chamado chamado = new Chamado();
+        chamado.setAcao("CRIAR");
+        chamado.setObjeto("E-MAIL");
+        chamado.setDetalhamento(savedUser.getHandle() + "@tads.rg.ifrs.edu.br\nCriar e-mail para novo usuário.");
+        chamado.setSituacao("NOVO");
+        chamado.setUsuario(savedUser);
+        
+        chamadoRepository.save(chamado);
     }
 
     private String generateHandle(String email) {
