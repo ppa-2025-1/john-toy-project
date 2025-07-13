@@ -1,4 +1,4 @@
-rootProject.name = 'aarrieche-toy-project'
+rootProject.name = 'jaime-toy-project'
 
 include 'ms-user'
 include 'ms-chamado'

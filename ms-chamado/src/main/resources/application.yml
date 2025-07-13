@@ -8,7 +8,7 @@ spring:
     url: jdbc:h2:mem:chamadodb
     driver-class-name: org.h2.Driver
     username: sa
-    password: 
+    password:
   h2:
     console:
       enabled: true
@@ -30,4 +30,4 @@ app:
 
 logging:
   level:
-    com.example.mschamado: DEBUG 
+    com.jaime.mschamado: DEBUG
