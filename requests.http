@@ -1,77 +1,101 @@
-### Get all users
+### Health Checks
 
-GET /api/v1/users HTTP/1.1
-Host: localhost:8080
+# Verificar status do ms-user
+GET http://localhost:8080/health
 Accept: application/json
 
-### Create a new User
+# Verificar status do ms-chamado
+GET http://localhost:8081/health
+Accept: application/json
 
-POST /api/v1/users HTTP/1.1
-Host: localhost:8080
+### ms-user - Gerenciamento de Usuários
+
+# Listar todos os usuários
+GET http://localhost:8080/api/v1/users
+Accept: application/json
+
+# Criar um novo usuário
+POST http://localhost:8080/api/v1/users
 Content-Type: application/json
 
 {
-    "email": "batata@potato.com",
-    "password": "1234RT56",
-    "handle": "papas",
-    "name": "Kartofel",
+    "email": "joao.silva@empresa.com",
+    "password": "senha123456",
+    "handle": "joao.silva",
+    "name": "João Silva",
     "roles": [
         "ROLE_USER"
     ],
-    "company": "potato inc"
+    "company": "Empresa ABC Ltda"
 }
 
-### Tenta criar um usuário inválido
-
-POST /api/v1/users HTTP/1.1
-Host: localhost:8080
+# Criar usuário com múltiplos papéis
+POST http://localhost:8080/api/v1/users
 Content-Type: application/json
 
 {
-    "email": "teste@teste.com",
-    "password": "1234RT56",
-    "handle": "papas",
-    "name": "Kartofel",
+    "email": "admin@empresa.com",
+    "password": "admin123456",
+    "handle": "admin",
+    "name": "Administrador",
+    "roles": [
+        "ROLE_USER",
+        "ROLE_ADMIN"
+    ],
+    "company": "Empresa ABC Ltda"
+}
+
+# Tentar criar usuário com email inválido
+POST http://localhost:8080/api/v1/users
+Content-Type: application/json
+
+{
+    "email": "email-invalido",
+    "password": "senha123456",
+    "handle": "usuario-teste",
+    "name": "Usuário Teste",
     "roles": [
         "ROLE_USER"
     ],
-    "company": "potato inc"
+    "company": "Empresa Teste"
 }
 
-### Post para novo chamado
-POST /api/v1/chamados HTTP/1.1
-Host: localhost:8080
+### ms-chamado - Gerenciamento de Chamados
+
+# Listar todos os chamados
+GET http://localhost:8081/api/v1/chamados
+Accept: application/json
+
+# Buscar chamado por ID
+GET http://localhost:8081/api/v1/chamados/1
+Accept: application/json
+
+# Criar chamado manualmente
+POST http://localhost:8081/api/v1/chamados
 Content-Type: application/json
 
 {
-    "acao": "abrir",
-    "objeto": "computador",
-    "detalhamento": "computador não liga",
-    "situacao": "NOVO",
-    "usuarioId":  1
+    "acao": "CRIAR",
+    "objeto": "SISTEMA",
+    "detalhamento": "Configurar novo sistema de backup",
+    "tipoSituacao": "NOVO",
+    "criadoPor": "admin"
 }
 
-### Get all chamados
-GET /api/v1/chamados HTTP/1.1
-Host: localhost:8080
-Accept: application/json
+# Atualizar situação de um chamado
+PATCH http://localhost:8081/api/v1/chamados/1/situacao
+Content-Type: text/plain
 
-### Get chamado by ID
-GET /api/v1/chamados/1 HTTP/1.1
-Host: localhost:8080
-Accept: application/json
+ANDAMENTO
 
-### Get user by ID
-GET /api/v1/users/1 HTTP/1.1    
-Host: localhost:8080
-Accept: application/json
+# Atualizar situação para resolvido
+PATCH http://localhost:8081/api/v1/chamados/1/situacao
+Content-Type: text/plain
 
-### Atualizar situação de um chamado
-PATCH /api/v1/chamados/1/situacao HTTP/1.1
-Host: localhost:8080
-Content-Type: application/json
+RESOLVIDO
 
-{
-    "situacao": "ANDAMENTO"
-}
+# Tentar atualizar com situação inválida
+PATCH http://localhost:8081/api/v1/chamados/1/situacao
+Content-Type: text/plain
 
+SITUACAO_INVALIDA
