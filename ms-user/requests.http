@@ -8,7 +8,7 @@ Content-Type: application/json
   "email": "jaime.silva@empresa.com",
   "password": "senha123",
   "company": "Empresa XYZ",
-  "type": "PREMIUM",
+  "type": "PROFESSIONAL",
   "roles": ["ROLE_ADMIN", "ROLE_MANAGER"]
 }
 
@@ -41,3 +41,32 @@ Content-Type: application/json
   "company": "Empresa DEF",
   "roles": ["ROLE_USER"]
 }
+
+### Consulta chamados
+
+GET http://localhost:8082/api/v1/chamados
+
+### Criar novo chamado
+POST http://localhost:8082/api/v1/chamados
+Content-Type: application/json
+
+{
+  "acao": "criar",
+  "objeto": "conta de e-mail",
+  "detalhamento": "Criar conta de e-mail corporativo para novo funcionário",
+  "usuarioId": 1
+}
+
+### Criar chamado para instalação
+POST http://localhost:8082/api/v1/chamados
+Content-Type: application/json
+
+{
+  "acao": "instalar",
+  "objeto": "software",
+  "detalhamento": "Instalar pacote Office na máquina do usuário",
+  "usuarioId": 2
+}
+
+### Consultar chamado específico
+GET http://localhost:8082/api/v1/chamados/1
