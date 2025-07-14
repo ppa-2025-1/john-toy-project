@@ -1,0 +1,35 @@
+### Criar novo chamado
+POST http://localhost:8082/api/v1/chamados
+Content-Type: application/json
+
+{
+  "acao": "criar",
+  "objeto": "e-mail",
+  "detalhamento": "Criar e-mail para o usuário jaime@empresa.com",
+  "usuarioId": 1
+}
+
+### Consultar chamado por ID
+GET http://localhost:8082/api/v1/chamados/1
+
+### Criar chamado para instalação
+POST http://localhost:8082/api/v1/chamados
+Content-Type: application/json
+
+{
+  "acao": "instalar",
+  "objeto": "computador",
+  "detalhamento": "Instalar computador na sala 1010",
+  "usuarioId": 2
+}
+
+### Criar chamado para configuração
+POST http://localhost:8082/api/v1/chamados
+Content-Type: application/json
+
+{
+  "acao": "configurar",
+  "objeto": "software",
+  "detalhamento": "Configurar software de desenvolvimento",
+  "usuarioId": 3
+}
