@@ -1,0 +1,43 @@
+### Criar novo usuário
+POST http://localhost:8081/api/v1/users
+Content-Type: application/json
+
+{
+  "name": "Jaime Silva",
+  "handle": "jaime.silva",
+  "email": "jaime.silva@empresa.com",
+  "password": "senha123",
+  "company": "Empresa XYZ",
+  "type": "PREMIUM",
+  "roles": ["ROLE_ADMIN", "ROLE_MANAGER"]
+}
+
+### Consultar todos os usuários
+GET http://localhost:8081/api/v1/users
+
+### Consultar usuário por ID
+GET http://localhost:8081/api/v1/users/1
+
+### Criar usuário com roles padrão
+POST http://localhost:8081/api/v1/users
+Content-Type: application/json
+
+{
+  "name": "João Santos",
+  "email": "joao.santos@empresa.com",
+  "password": "senha456",
+  "company": "Empresa ABC",
+  "roles": []
+}
+
+### Criar usuário com handle automático
+POST http://localhost:8081/api/v1/users
+Content-Type: application/json
+
+{
+  "name": "Maria Costa",
+  "email": "maria.costa@empresa.com",
+  "password": "senha789",
+  "company": "Empresa DEF",
+  "roles": ["ROLE_USER"]
+}
