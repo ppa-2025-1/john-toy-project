@@ -46,4 +46,4 @@ Este projeto implementa uma arquitetura de microserviços para gerenciamento de 
 - ms-chamado: 8082
 
 ### Desenvolvedor
-jaime
+jaime e john
