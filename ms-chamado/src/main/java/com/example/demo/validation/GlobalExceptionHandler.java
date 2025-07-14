@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptionHandler {
 
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(exception = MethodArgumentNotValidException.class)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
     public Object handleBadRequest(MethodArgumentNotValidException e) {
         return e.getBindingResult().getFieldErrors().stream()
                 .collect(Collectors.toMap(
