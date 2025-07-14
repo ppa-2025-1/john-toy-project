@@ -1,12 +1,15 @@
 package com.example.demo.mapper;
 
+import org.springframework.stereotype.Component;
+
 import com.example.demo.dto.NovoChamado;
 import com.example.demo.model.entity.Chamado;
 import com.example.demo.model.enums.Situacao;
 
+@Component
 public class ChamadoMapper {
 
-    public static Chamado toEntity(NovoChamado novoChamado) {
+    public Chamado toEntity(NovoChamado novoChamado) {
         Chamado chamado = new Chamado();
         chamado.setAcao(novoChamado.acao());
         chamado.setObjeto(novoChamado.objeto());

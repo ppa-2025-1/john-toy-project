@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "chamados")
 public class Chamado extends BaseEntity {
-    @Column(nullable = false, unique = true, length = 100)
+    @Column(nullable = false, length = 100)
     private String acao;
 
     @Column(nullable = false, length = 100)
